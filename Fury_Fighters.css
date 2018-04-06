@@ -1,9 +1,13 @@
 #container {
-      width: 800px;
+    width: 800px;
     height: 600px;
     position: relative;
     background: white;
     border-style: solid;
     border-width: thick;
 }
+
+#player1 {
+    height: 100px;
+    width: 100px;
 }
