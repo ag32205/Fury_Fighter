@@ -8,6 +8,31 @@
 }
 
 #player1 {
-    height: 100px;
-    width: 100px;
+    height: 600px;
+    width: 800px;
+    object-fit: none;
+    object-position: 50% 50%;
+    object-position: bottom;
+
+}
+#health {
+    height: 50px;
+    width: 800px;
+
+}
+
+#healthred {
+    height: 25px;
+    width: 800px;
+    background-color: red;
+
+
+
+}
+#healthblue {
+    height: 25px;
+    width: 800px;
+    background-color: blue;
+
+
 }
