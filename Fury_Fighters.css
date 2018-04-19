@@ -8,11 +8,10 @@
 }
 
 #player1 {
-    height: 600px;
-    width: 800px;
-    object-fit: none;
-    object-position: 50% 50%;
-    object-position: bottom;
+    top: 550px;
+    left: 400px;
+    position: relative;
+
 
 }
 @keyframes example {
