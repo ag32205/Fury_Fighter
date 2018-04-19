@@ -7,7 +7,7 @@ function Player(pos, speed, controlset, id) {
     var fighter = document.getElementById(this.id );
     var position =  this.pos;
     this.move = document.body.onkeydown = function (e) {
-            if (e.keyCode === 65 && this.controlset == 1) {
+            if (e.keyCode === 65) {
                 position = position - speed;
             }
         if (e.keyCode === 37 && this.controlset == 2) {
@@ -16,7 +16,7 @@ function Player(pos, speed, controlset, id) {
             return position;
     }
     fighter.style.left = position + 'px';
-    fighter.style.top = ypos;
+    fighter.style.top = ypos + 'px';
 }
 
 var Player1 = new Player(400, 25, 1, 'player1');
