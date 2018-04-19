@@ -8,7 +8,7 @@
 }
 
 #player1 {
-    top: 550px;
+    top: 570px;
     left: 400px;
     position: relative;
 
@@ -31,6 +31,14 @@
     animation-iteration-count: infinite;
 }
 
+#platform {
+     width: 100px;
+    height: 10px;
+    background-color: black;
+    position: relative;
+    top: 300px;
+    left: 500px;
+}
 #health {
     height: 50px;
     width: 800px;
