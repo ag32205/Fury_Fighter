@@ -18,20 +18,12 @@ var Player1 = new Player(400, 5, 1, 'player1');
 
 
 document.body.onkeydown = function (e) {
-<<<<<<< HEAD
-    if (e.keyCode === 65) {
-        Player1.pos = Player1.pos - Player1.speed;
-    }
-    if (e.keyCode === 68) {
-        Player1.pos = Player1.pos + Player1.speed;
-    }
-    if (e.keyCode === 37) {
-=======
+
     if (e.keyCode === 65 && Player1.pos > -15) {
         Player1.pos = Player1.pos - Player1.speed;
     }
    if (e.keyCode === 37 && Player1.pos > 780) {
->>>>>>> origin/master
+
         Player1.pos = Player1.pos - Player1.speed;
     }
        if (e.keyCode === 68) {
