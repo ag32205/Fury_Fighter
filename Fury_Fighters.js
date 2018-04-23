@@ -22,14 +22,13 @@ document.body.onkeydown = function (e) {
     if (e.keyCode === 65 && Player1.pos > -10) {
         Player1.pos = Player1.pos - Player1.speed;
     }
-   if (e.keyCode === 37 && Player1.pos > -10) {
-
+    if (e.keyCode === 37 && Player1.pos > -10) {
         Player1.pos = Player1.pos - Player1.speed;
     }
-       if (e.keyCode === 68 && Player1.pos < 780) {
+    if (e.keyCode === 68 && Player1.pos < 780) {
         Player1.pos = Player1.pos + Player1.speed;
     }
-   if (e.keyCode === 39 && Player1.pos < 780) {
+    if (e.keyCode === 39 && Player1.pos < 780) {
         Player1.pos = Player1.pos + Player1.speed;
     }
 
