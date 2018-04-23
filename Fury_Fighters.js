@@ -17,8 +17,9 @@ function Player(pos, speed, controlset, id) {
 var Player1 = new Player(400, 5, 1, 'player1');
 
 
-document.body.onkeydown = function (e) {
 
+document.body.onkeydown = function frame(e) {
+var framerate = setInterval(frame, 5);
     if (e.keyCode === 65 && Player1.pos > -10) {
         Player1.pos = Player1.pos - Player1.speed;
     }
@@ -34,4 +35,5 @@ document.body.onkeydown = function (e) {
     }
 
     Player1.move();
+    clearInterval(framerate);
 };
