@@ -19,6 +19,9 @@
     75%  {left:0px; top:200px;}
     100% {left:0px; top:0px;}
 }
+#playermoving {
+
+}
 #player12 {
     height: 600px;
     width: 800px;
