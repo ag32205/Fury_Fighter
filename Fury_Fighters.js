@@ -29,6 +29,7 @@ var iskeydown = Boolean;
 
 
 function run() {
+    if (keys.moving == true){
     if (keys.left === true) {
         Player1.pos = Player1.pos - Player1.speed;
     }
@@ -41,12 +42,11 @@ function run() {
     if (keys.right === true) {
         Player1.pos = Player1.pos + Player1.speed;
     }
+      Player1.move();
+    }
 
-    Player1.move();
 }
-
-
-
+var framerate = setInterval(run, 1);
 
 document.body.onkeydown = function frame(e) {
     keys.moving = true;
@@ -84,4 +84,4 @@ document.body.onkeyup = function (e) {
     keys.moving = false;
 };
 
-window.addEventListener('keydown', run());
+window.addEventListener('keydown', run);
