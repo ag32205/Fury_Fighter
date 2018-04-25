@@ -3,24 +3,26 @@ function Player(pos, speed, controlset, id) {
     this.speed = speed;
     this.controlset = controlset;
     this.id = id;
-    var ypos = 570;
+    this.ypos = 570;
     var fighter = document.getElementById(this.id);
 
     this.move = function () {
         fighter.style.left = this.pos + 'px';
-        fighter.style.top = ypos + 'px';
+        fighter.style.top = this.ypos + 'px';
     };
+
     fighter.style.left = this.pos + 'px';
-    fighter.style.top = ypos + 'px';
+    fighter.style.top = this.ypos + 'px';
 }
 
-function Keyset(left, right) {
+function Keyset(left, right, up) {
     this.left = left;
     this.right = right;
+    this.up = up;
     this.moving = Boolean;
 }
 
-var keys = new Keyset(37, 39);
+var keys = new Keyset(37, 39, 87);
 
 var Player1 = new Player(400, 5, 1, 'player1');
 var iskeydown = Boolean;
@@ -39,6 +41,7 @@ function run() {
     if (keys.right === true) {
         Player1.pos = Player1.pos + Player1.speed;
     }
+
     Player1.move();
 }
 
@@ -47,6 +50,7 @@ function run() {
 
 document.body.onkeydown = function frame(e) {
     keys.moving = true;
+
     if (e.keyCode === 65 && Player1.pos > -10) {
         keys.left = true;
         keys.right = false;
@@ -63,6 +67,13 @@ document.body.onkeydown = function frame(e) {
         keys.right = true;
         keys.left = false;
     }
+    if (e.keyCode === 38 && Player1.ypos > -11) {
+        keys.up = true;
+    }
+    if (e.keyCode === 87 && Player1.ypos > -11) {
+        keys.up = true
+    }
+
 
 };
 
