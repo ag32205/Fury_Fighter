@@ -19,7 +19,7 @@ var iskeydown = Boolean;
 
 
 function run(e) {
-    if (iskeydown === true) {
+    if (this.iskeydown === true) {
         if (e.keyCode === 65 && Player1.pos > -10) {
             Player1.pos = Player1.pos - Player1.speed;
         }
@@ -32,8 +32,9 @@ function run(e) {
         if (e.keyCode === 39 && Player1.pos < 780) {
             Player1.pos = Player1.pos + Player1.speed;
         }
-        Player1.move();
-    }
+
+    } else{}
+    Player1.move();
 }
 
 document.body.onkeydown = function frame(e) {
