@@ -15,24 +15,36 @@ function Player(pos, speed, controlset, id) {
 }
 
 var Player1 = new Player(400, 5, 1, 'player1');
+var iskeydown = Boolean;
 
 
+function run(e) {
+    if (iskeydown === true) {
+        if (e.keyCode === 65 && Player1.pos > -10) {
+            Player1.pos = Player1.pos - Player1.speed;
+        }
+        if (e.keyCode === 37 && Player1.pos > -10) {
+            Player1.pos = Player1.pos - Player1.speed;
+        }
+        if (e.keyCode === 68 && Player1.pos < 780) {
+            Player1.pos = Player1.pos + Player1.speed;
+        }
+        if (e.keyCode === 39 && Player1.pos < 780) {
+            Player1.pos = Player1.pos + Player1.speed;
+        }
+        Player1.move();
+    }
+}
 
 document.body.onkeydown = function frame(e) {
-var framerate = setInterval(frame, 5);
-    if (e.keyCode === 65 && Player1.pos > -10) {
-        Player1.pos = Player1.pos - Player1.speed;
-    }
-    if (e.keyCode === 37 && Player1.pos > -10) {
-        Player1.pos = Player1.pos - Player1.speed;
-    }
-    if (e.keyCode === 68 && Player1.pos < 780) {
-        Player1.pos = Player1.pos + Player1.speed;
-    }
-    if (e.keyCode === 39 && Player1.pos < 780) {
-        Player1.pos = Player1.pos + Player1.speed;
-    }
+    iskeydown = true;
+    run(e);
+}
 
-    Player1.move();
-    clearInterval(framerate);
-};
+
+
+
+document.body.onkeyup = function (e) {
+    iskeydown = false;
+    run(e);
+}
