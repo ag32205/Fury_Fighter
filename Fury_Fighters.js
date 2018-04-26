@@ -30,7 +30,7 @@ var iskeydown = Boolean;
 
 
 function run() {
-    if (keys.moving == true){
+    if (keys.moving === true){
     if (keys.left === true && Player1.pos > -10) {
         Player1.pos = Player1.pos - Player1.speed;
     }
@@ -68,12 +68,7 @@ document.body.onkeydown = function frame(e) {
         keys.right = true;
         keys.left = false;
     }
-    if (e.keyCode === 38 && Player1.ypos > -11) {
-        keys.up = true;
-    }
-    if (e.keyCode === 87 && Player1.ypos > -11) {
-        keys.up = true
-    }
+
 
 
 };
@@ -83,6 +78,8 @@ document.body.onkeydown = function frame(e) {
 
 document.body.onkeyup = function (e) {
     keys.moving = false;
+    keys.right = false;
+    keys.left = false;
 };
 
 window.addEventListener('keydown', run);
