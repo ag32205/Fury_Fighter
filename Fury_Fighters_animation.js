@@ -1,6 +1,10 @@
 var img = document.getElementById('player1');
+var img2 = document.getElementById('player2');
+var src2 = document.createAttribute('src');
 var src = document.createAttribute('src');
+src2.value = "sprite_red/practice_idle.png";
 src.value = "sprite_red/practice_idle.png";
+img2.setAttributeNode(src2);
 img.setAttributeNode(src);
 
 function animate(e) {

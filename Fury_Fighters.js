@@ -1,4 +1,4 @@
-function Player(pos, speed, controlset, id, src) {
+function Player(pos, speed, controlset, id) {
     this.pos = pos;
     this.speed = speed;
     this.controlset = controlset;
@@ -15,7 +15,7 @@ function Player(pos, speed, controlset, id, src) {
     fighter.style.top = this.ypos + 'px';
 }
 var Player1 = new Player(400, 2, 1, 'player1');
-
+var Player2 = new Player(300, 2, 2, 'player2');
 
 
 function Keyset(left, right, up) {
