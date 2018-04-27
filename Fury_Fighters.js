@@ -55,6 +55,7 @@ function jump() {
     if (keys.jumping === true) {
         if (keys.up === true && Player1.ypos > -11) {
             Player1.ypos = Player1.ypos - Player1.speed;
+            document.getElementById('player1').src = "sprite_red/practice_float_red.png";
         }
         Player1.move();
     }
@@ -64,6 +65,7 @@ var framerate = setInterval(jump, 2);
 function descend() {
     if (keys.jumping === false && Player1.ypos < 565) {
         Player1.ypos = Player1.ypos + Player1.speed;
+        document.getElementById('player1').src = "sprite_red/practice_idle.png";
     }
     Player1.move();
 }
