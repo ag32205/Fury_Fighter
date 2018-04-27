@@ -3,7 +3,7 @@ function Player(pos, speed, controlset, id) {
     this.speed = speed;
     this.controlset = controlset;
     this.id = id;
-    this.ypos = 570;
+    this.ypos = 555;
     var fighter = document.getElementById(this.id);
 
     this.move = function () {
@@ -37,16 +37,16 @@ var iskeydown = Boolean;
 
 function run() {
     if (keys.moving == true) {
-        if (keys.left === true && Player1.pos > -10) {
+        if (keys.left === true && Player1.pos > -20) {
             Player1.pos = Player1.pos - Player1.speed;
         }
-        if (keys.right === true && Player1.pos > -10) {
+        if (keys.left === true && Player1.pos > -20) {
             Player1.pos = Player1.pos - Player1.speed;
         }
-        if (keys.right === true && Player1.pos < 780) {
+        if (keys.right === true && Player1.pos < 770) {
             Player1.pos = Player1.pos + Player1.speed;
         }
-        if (keys.right === true && Player1.pos < 780) {
+        if (keys.right === true && Player1.pos < 770) {
             Player1.pos = Player1.pos + Player1.speed;
         }
         Player1.move();
@@ -57,7 +57,7 @@ var framerate = setInterval(run, 1);
 
 function jump() {
     if (keys.jumping === true) {
-        if (keys.up === true && Player1.ypos > -11) {
+        if (keys.up === true && Player1.ypos > -25) {
             Player1.ypos = Player1.ypos - Player1.speed;
             document.getElementById('player1').src = "sprite_red/practice_float_red.png";
         }
@@ -67,15 +67,16 @@ function jump() {
 var framerate = setInterval(jump, 2);
 
 function descend() {
-    if (keys.jumping === false && Player1.ypos < 565) {
+    if (keys.jumping === false && Player1.ypos < 555) {
         Player1.ypos = Player1.ypos + Player1.speed;
     }
     Player1.move();
 }
 var framerate = setInterval(descend, 2);
+
 document.body.onkeydown = function frame(e) {
 
-    if (e.keyCode === 65) { //a
+    if (e.keyCode === keys1.l) { //a
         keys.moving = true;
 
         keys.left = true;

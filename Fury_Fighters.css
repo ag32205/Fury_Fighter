@@ -10,42 +10,18 @@
 #player1 {
 
     position: relative;
+    height: 50px;
+    width: 50px;
 }
 
-@keyframes example {
-    0% {
-        left: 0px;
-        top: 0px;
-    }
-    25% {
-        left: 200px;
-        top: 0px;
-    }
-    50% {
-        left: 200px;
-        top: 200px;
-    }
-    75% {
-        left: 0px;
-        top: 200px;
-    }
-    100% {
-        left: 0px;
-        top: 0px;
-    }
+#player2 {
+    position: relative;
+    height: 50px;
+    width: 50px;
 }
 
 #playermoving {}
 
-#player12 {
-    height: 600px;
-    width: 800px;
-    animation-name: example;
-    animation-duration: 4s;
-    animation-fill-mode: forwards;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-}
 
 #platform {
     width: 100px;
