@@ -1,4 +1,4 @@
-function Player(pos, speed, controlset, id) {
+function Player(pos, speed, controlset, id, src) {
     this.pos = pos;
     this.speed = speed;
     this.controlset = controlset;
@@ -14,28 +14,27 @@ function Player(pos, speed, controlset, id) {
     fighter.style.left = this.pos + 'px';
     fighter.style.top = this.ypos + 'px';
 }
-
-function Keyset(l, r, u) {
-    this.l = l;
-    this.r = r;
-    this.u = u;
-    this.left = Boolean;
-    this.right = Boolean;
-    this.up = Boolean;
-    this.moving = Boolean;
-}
-
-var keys = new Keyset(65, 68, 87);
-
 var Player1 = new Player(400, 2, 1, 'player1');
-var iskeydown = Boolean;
 var img = document.getElementById('player1');
 var src = document.createAttribute('src');
-src.value = "sprite_red/practice_attack_2.png";
-img.setAttributeNode(src);
+
+
+
+function Keyset(left, right, up, space) {
+    this.left = left;
+    this.right = right;
+    this.up = up;
+    this.space = space;
+    this.moving = Boolean;
+    this.jumping = Boolean;
+    this.attacking = Boolean;
+}
+var keys = new Keyset(37, 39, 87, 32);
+var iskeydown = Boolean;
+
 
 function run() {
-    if (keys.moving === true) {
+    if (keys.moving == true) {
         if (keys.left === true && Player1.pos > -10) {
             Player1.pos = Player1.pos - Player1.speed;
         }
@@ -48,75 +47,72 @@ function run() {
         if (keys.right === true && Player1.pos < 780) {
             Player1.pos = Player1.pos + Player1.speed;
         }
-
         Player1.move();
     }
 
 }
 var framerate = setInterval(run, 1);
 
-function animate() {
-
-    for (i = 0; i > 8; i += 0.5) {
-        if (i === 1) {
-            img.src.value = "sprite_red/practice_attack_2.png";
+function jump() {
+    if (keys.jumping === true) {
+        if (keys.up === true && Player1.ypos > -11) {
+            Player1.ypos = Player1.ypos - Player1.speed;
         }
-        if (i === 2) {
-            img.src.value = "sprite_red/practice_attack_3.png";
-        }
-        if (i === 3) {
-            img.src.value = "sprite_red/practice_attack_4.png";
-        }
-        if (i === 4) {
-            img.src.value = "sprite_red/practice_attack_5.png";
-        }
-        if (i === 5) {
-            img.src.value = "sprite_red/practice_attack_6.png";
-        }
-        if (i === 6) {
-            img.src.value = "sprite_red/practice_attack_7.png";
-        }
-        if (i === 7) {
-            img.src.value = "sprite_red/practice_attack_7.png";
-        }
-        img.setAttribute(src);
+        Player1.move();
     }
 }
-var framerateattack = setInterval(animate, 5);
+var framerate = setInterval(jump, 2);
 
+function descend() {
+    if (keys.jumping === false && Player1.ypos < 565) {
+        Player1.ypos = Player1.ypos + Player1.speed;
+    }
+    Player1.move();
+}
+var framerate = setInterval(descend, 2);
 document.body.onkeydown = function frame(e) {
-    keys.moving = true;
 
-    if (e.keyCode === keys.l) {
+    if (e.keyCode === 65) { //a
+        keys.moving = true;
+
         keys.left = true;
         keys.right = false;
     }
-    if (e.keyCode === 37) {
+    if (e.keyCode === 37) { //left
+        keys.moving = true;
+
         keys.left = true;
         keys.right = false;
     }
-    if (e.keyCode === keys.r) {
+    if (e.keyCode === 68) { //d
+        keys.moving = true;
+
         keys.right = true;
         keys.left = false;
     }
-    if (e.keyCode === 39) {
+    if (e.keyCode === 39) { //right
+        keys.moving = true;
+
         keys.right = true;
         keys.left = false;
     }
-    if (e.keyCode === 32) {
-        animate();
+    if (e.keyCode === 38) { //up
+        keys.up = true;
     }
+    if (e.keyCode === 87) { //w
+        keys.jumping = true;
+        keys.up = true
+    }
+    if (e.keyCode === 32) { //space
+        keys.space = true;
+    }
+
 
 };
 
-
-
-
-
 document.body.onkeyup = function (e) {
     keys.moving = false;
-    keys.right = false;
-    keys.left = false;
+    keys.jumping = false;
 };
 
 window.addEventListener('keydown', run);
