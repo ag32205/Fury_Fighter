@@ -15,20 +15,23 @@ function Player(pos, speed, controlset, id) {
     fighter.style.top = this.ypos + 'px';
 }
 
-function Keyset(left, right, up) {
-    this.left = left;
-    this.right = right;
-    this.up = up;
+function Keyset(l, r, u) {
+    this.l = l;
+    this.r = r;
+    this.u = u;
+    this.left = Boolean;
+    this.right = Boolean;
+    this.up = Boolean;
     this.moving = Boolean;
 }
 
-var keys = new Keyset(37, 39, 87);
+var keys = new Keyset(65, 68, 87);
 
 var Player1 = new Player(400, 2, 1, 'player1');
 var iskeydown = Boolean;
 var img = document.getElementById('player1');
 var src = document.createAttribute('src');
-
+src.value = "sprite_red/practice_attack_2.png";
 img.setAttributeNode(src);
 
 function run() {
@@ -45,6 +48,7 @@ function run() {
         if (keys.right === true && Player1.pos < 780) {
             Player1.pos = Player1.pos + Player1.speed;
         }
+
         Player1.move();
     }
 
@@ -75,15 +79,15 @@ function animate() {
         if (i === 7) {
             img.src.value = "sprite_red/practice_attack_7.png";
         }
+        img.setAttribute(src);
     }
 }
-
 var framerateattack = setInterval(animate, 5);
 
 document.body.onkeydown = function frame(e) {
     keys.moving = true;
 
-    if (e.keyCode === 65) {
+    if (e.keyCode === keys.l) {
         keys.left = true;
         keys.right = false;
     }
@@ -91,7 +95,7 @@ document.body.onkeydown = function frame(e) {
         keys.left = true;
         keys.right = false;
     }
-    if (e.keyCode === 68) {
+    if (e.keyCode === keys.r) {
         keys.right = true;
         keys.left = false;
     }
