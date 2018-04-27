@@ -15,8 +15,6 @@ function Player(pos, speed, controlset, id, src) {
     fighter.style.top = this.ypos + 'px';
 }
 var Player1 = new Player(400, 2, 1, 'player1');
-var img = document.getElementById('player1');
-var src = document.createAttribute('src');
 
 
 
@@ -105,6 +103,7 @@ document.body.onkeydown = function frame(e) {
     }
     if (e.keyCode === 32) { //space
         keys.space = true;
+
     }
 
 
@@ -115,4 +114,4 @@ document.body.onkeyup = function (e) {
     keys.jumping = false;
 };
 
-window.addEventListener('keydown', run);
+
