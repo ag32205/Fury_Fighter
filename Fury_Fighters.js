@@ -65,7 +65,6 @@ var framerate = setInterval(jump, 2);
 function descend() {
     if (keys.jumping === false && Player1.ypos < 565) {
         Player1.ypos = Player1.ypos + Player1.speed;
-        document.getElementById('player1').src = "sprite_red/practice_idle.png";
     }
     Player1.move();
 }
@@ -74,7 +73,7 @@ document.body.onkeydown = function frame(e) {
 
     if (e.keyCode === 65) { //a
         keys.moving = true;
-
+        document.getElementById('player1').src = "sprite_red/practice_redrun_left.png";
         keys.left = true;
         keys.right = false;
     }
@@ -89,6 +88,7 @@ document.body.onkeydown = function frame(e) {
 
         keys.right = true;
         keys.left = false;
+        document.getElementById('player1').src = "sprite_red/practice_redrun_right.png";
     }
     if (e.keyCode === 39) { //right
         keys.moving = true;
@@ -102,6 +102,7 @@ document.body.onkeydown = function frame(e) {
     if (e.keyCode === 87) { //w
         keys.jumping = true;
         keys.up = true
+        document.getElementById('player1').src = "sprite_red/practice_float_red.png";
     }
     if (e.keyCode === 32) { //space
         keys.space = true;
@@ -114,6 +115,5 @@ document.body.onkeydown = function frame(e) {
 document.body.onkeyup = function (e) {
     keys.moving = false;
     keys.jumping = false;
+    document.getElementById('player1').src = "sprite_red/practice_idle.png";
 };
-
-
