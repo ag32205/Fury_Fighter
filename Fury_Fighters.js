@@ -18,16 +18,17 @@ var Player1 = new Player(400, 2, 1, 'player1');
 
 
 
-function Keyset(left, right, up, space) {
+function Keyset(left, right, up) {
     this.left = left;
     this.right = right;
     this.up = up;
-    this.space = space;
+
     this.moving = Boolean;
     this.jumping = Boolean;
     this.attacking = Boolean;
 }
-var keys = new Keyset(37, 39, 87, 32);
+var keys = new Keyset(37, 39, 87);
+var keys = new Keyset(65, 68, 87)
 var iskeydown = Boolean;
 
 
@@ -73,13 +74,13 @@ document.body.onkeydown = function frame(e) {
 
     if (e.keyCode === 65) { //a
         keys.moving = true;
-        document.getElementById('player1').src = "sprite_red/practice_redrun_left.png";
+
         keys.left = true;
         keys.right = false;
     }
     if (e.keyCode === 37) { //left
         keys.moving = true;
-
+        document.getElementById('player1').src = "sprite_red/practice_redrun_left.png";
         keys.left = true;
         keys.right = false;
     }
@@ -88,26 +89,25 @@ document.body.onkeydown = function frame(e) {
 
         keys.right = true;
         keys.left = false;
-        document.getElementById('player1').src = "sprite_red/practice_redrun_right.png";
+
     }
     if (e.keyCode === 39) { //right
         keys.moving = true;
-
+        document.getElementById('player1').src = "sprite_red/practice_redrun_right.png";
         keys.right = true;
         keys.left = false;
     }
     if (e.keyCode === 38) { //up
         keys.up = true;
+        keys.jumping = true;
+        document.getElementById('player1').src = "sprite_red/practice_float_red.png";
     }
     if (e.keyCode === 87) { //w
         keys.jumping = true;
         keys.up = true
-        document.getElementById('player1').src = "sprite_red/practice_float_red.png";
-    }
-    if (e.keyCode === 32) { //space
-        keys.space = true;
 
     }
+
 
 
 };

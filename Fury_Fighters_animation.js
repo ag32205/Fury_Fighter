@@ -5,7 +5,7 @@ img.setAttributeNode(src);
 
 function animate(e) {
 
-    if (e.keyCode === 32) {
+    if (e.keyCode === 13) {
 
         setTimeout(function () {
             src.value = "sprite_red/practice_attack_2.png";
