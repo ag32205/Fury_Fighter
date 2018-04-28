@@ -40,6 +40,7 @@ function Keyset(left, right, up) {
     this.moving = Boolean;
     this.jumping = Boolean;
     this.attacking = Boolean;
+    this.descend = Boolean;
 }
 var keys = new Keyset(37, 39, 38);
 var keys1 = new Keyset(65, 68, 87)
@@ -90,6 +91,7 @@ function jump() {
             Player2.move();
         }
 
+
     }
 
 
@@ -97,9 +99,20 @@ function jump() {
 var framerate = setInterval(jump, 2);
 
 function descend() {
+
+ if (Platform1.pos > Player1.pos < (Platform1.pos + 100) && Player1.ypos == Platform1.ypos) {
+        keys.decend = false;
+    }
+
     if (keys.jumping === false && Player1.ypos < 537) {
         Player1.ypos = Player1.ypos + Player1.speed;
     }
+
+
+    if (keys.decend === false){
+         Player1.ypos = Player1.ypos + Player1.speed;
+    }
+
     Player1.move();
     if (keys1.jumping === false && Player2.ypos < 537) {
         Player2.ypos = Player2.ypos + Player2.speed;
