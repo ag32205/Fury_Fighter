@@ -1,7 +1,6 @@
-function Player(pos, speed, controlset, id) {
+function Player(pos, speed, id) {
     this.pos = pos;
     this.speed = speed;
-    this.controlset = controlset;
     this.id = id;
     this.ypos = 555;
     var fighter = document.getElementById(this.id);
@@ -14,8 +13,8 @@ function Player(pos, speed, controlset, id) {
     fighter.style.left = this.pos + 'px';
     fighter.style.top = this.ypos + 'px';
 }
-var Player1 = new Player(400, 2, 1, 'player1');
-var Player2 = new Player(300, 2, 2, 'player2');
+var Player1 = new Player(400, 2, 'player1');
+var Player2 = new Player(300, 2, 'player2');
 
 
 function Keyset(left, right, up) {
@@ -49,10 +48,10 @@ function run() {
         Player1.move();
     }
     if (keys1.moving === true) {
-        if (keys1.left === true && Player2.pos > -20) {
+        if (keys1.left === true && Player2.pos > -75) {
             Player2.pos = Player2.pos - Player2.speed;
         }
-        if (keys1.right === true && Player2.pos < 770) {
+        if (keys1.right === true && Player2.pos < 715) {
             Player2.pos = Player2.pos + Player2.speed;
         }
         Player2.move();
@@ -102,6 +101,7 @@ document.body.onkeydown = function frame(e) {
     if (e.keyCode === keys1.l) { //a
         keys1.moving = true;
         document.getElementById('player2').src = "sprite_blue/bluerun_left.png";
+        document.getElementById('player2').direction = "left";
         keys1.left = true;
         keys1.right = false;
     }
@@ -114,6 +114,7 @@ document.body.onkeydown = function frame(e) {
     if (e.keyCode === keys1.r) { //d
         keys1.moving = true;
         document.getElementById('player2').src = "sprite_blue/bluerun_right.png";
+        document.getElementById('player2').direction = "right";
         keys1.right = true;
         keys1.left = false;
 
