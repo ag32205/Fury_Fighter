@@ -66,10 +66,23 @@ function jump() {
         if (keys.up === true && Player1.ypos > -25) {
             Player1.ypos = Player1.ypos - Player1.speed;
             document.getElementById('player1').src = "sprite_red/practice_float_red.png";
+
         }
         Player1.move();
     }
-}
+
+        if (keys1.jumping === true) {
+            if (keys1.up === true && Player2.ypos > -25) {
+                Player2.ypos = Player2.ypos - Player2.speed;
+                document.getElementById('player2').src = "sprite_blue/float_blue.png";
+            }
+            Player2.move();
+        }
+
+    }
+
+
+
 var framerate = setInterval(jump, 2);
 
 function descend() {
@@ -77,6 +90,10 @@ function descend() {
         Player1.ypos = Player1.ypos + Player1.speed;
     }
     Player1.move();
+    if (keys1.jumping === false && Player2.ypos < 555) {
+        Player2.ypos = Player2.ypos + Player2.speed;
+    }
+    Player2.move();
 }
 var framerate = setInterval(descend, 2);
 
@@ -123,13 +140,22 @@ document.body.onkeydown = function frame(e) {
 };
 
 function stop(e) {
-   if (e.keyCode === keys.r || e.keyCode === keys.l || e.keyCode === keys.u){
-      keys.moving = false;
+    if (e.keyCode === keys.r || e.keyCode === keys.l) {
+        keys.moving = false;
+
         document.getElementById('player1').src = "sprite_red/practice_idle.png";
     }
-    if (e.keyCode || keys1.r && e.keyCode === keys1.l || e.keyCode === keys1.u){
-      keys1.moving = false;
+    if (e.keyCode === keys.u) {
+        keys.jumping = false;
+        document.getElementById('player1').src = "sprite_red/practice_idle.png";
+    }
+    if (e.keyCode || keys1.r && e.keyCode === keys1.l) {
+        keys1.moving = false;
         document.getElementById('player2').src = "sprite_red/practice_idle.png";
+    }
+    if (e.keyCode === keys1.u) {
+        keys1.jumping = false;
+        document.getElementById('player1').src = "sprite_red/practice_idle.png";
     }
 
 
