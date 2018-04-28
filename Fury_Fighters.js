@@ -36,20 +36,26 @@ var iskeydown = Boolean;
 
 
 function run() {
-    if (keys.moving == true) {
+    if (keys.moving === true) {
         if (keys.left === true && Player1.pos > -20) {
             Player1.pos = Player1.pos - Player1.speed;
         }
-        if (keys.left === true && Player1.pos > -20) {
-            Player1.pos = Player1.pos - Player1.speed;
-        }
+
         if (keys.right === true && Player1.pos < 770) {
             Player1.pos = Player1.pos + Player1.speed;
         }
-        if (keys.right === true && Player1.pos < 770) {
-            Player1.pos = Player1.pos + Player1.speed;
-        }
+
+
         Player1.move();
+    }
+    if (keys1.moving === true) {
+        if (keys1.left === true && Player2.pos > -20) {
+            Player2.pos = Player2.pos - Player2.speed;
+        }
+        if (keys1.right === true && Player2.pos < 770) {
+            Player2.pos = Player2.pos + Player2.speed;
+        }
+        Player2.move();
     }
 
 }
@@ -77,10 +83,10 @@ var framerate = setInterval(descend, 2);
 document.body.onkeydown = function frame(e) {
 
     if (e.keyCode === keys1.l) { //a
-        keys.moving = true;
-
-        keys.left = true;
-        keys.right = false;
+        keys1.moving = true;
+        document.getElementById('player2').src = "sprite_blue/bluerun_left.png";
+        keys1.left = true;
+        keys1.right = false;
     }
     if (e.keyCode === keys.l) { //left
         keys.moving = true;
@@ -88,11 +94,11 @@ document.body.onkeydown = function frame(e) {
         keys.left = true;
         keys.right = false;
     }
-    if (e.keyCode === 68) { //d
-        keys.moving = true;
-
-        keys.right = true;
-        keys.left = false;
+    if (e.keyCode === keys1.r) { //d
+        keys1.moving = true;
+        document.getElementById('player2').src = "sprite_blue/bluerun_right.png";
+        keys1.right = true;
+        keys1.left = false;
 
     }
     if (e.keyCode === keys.r) { //right
@@ -106,18 +112,27 @@ document.body.onkeydown = function frame(e) {
         keys.jumping = true;
         document.getElementById('player1').src = "sprite_red/practice_float_red.png";
     }
-    if (e.keyCode === 87) { //w
-        keys.jumping = true;
-        keys.up = true
+    if (e.keyCode === keys1.u) { //w
+        keys1.jumping = true;
+        keys1.up = true;
+        document.getElementById('player2').src = "sprite_blue/float_blue.png";
 
     }
 
 
+};
+
+function stop(e) {
+   if (e.keyCode === keys.r || e.keyCode === keys.l || e.keyCode === keys.u){
+      keys.moving = false;
+        document.getElementById('player1').src = "sprite_red/practice_idle.png";
+    }
+    if (e.keyCode || keys1.r && e.keyCode === keys1.l || e.keyCode === keys1.u){
+      keys1.moving = false;
+        document.getElementById('player2').src = "sprite_red/practice_idle.png";
+    }
+
 
 };
 
-document.body.onkeyup = function (e) {
-    keys.moving = false;
-    keys.jumping = false;
-    document.getElementById('player1').src = "sprite_red/practice_idle.png";
-};
+window.addEventListener('keyup', stop);
