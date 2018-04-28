@@ -33,6 +33,31 @@ function animate(e) {
             src.value = "sprite_red/practice_idle.png";
         }, 600);
     }
+    if (e.keyCode === 16) {
+
+        setTimeout(function () {
+            src2.value = "sprite_blue/attack_blue_1.png";
+        }, 1);
+        setTimeout(function () {
+            src2.value = "sprite_blue/attack_blue_2.png";
+        }, 100);
+        setTimeout(function () {
+            src2.value = "sprite_blue/attack_blue_3_right.png";
+        }, 200);
+        setTimeout(function () {
+            src2.value = "sprite_blue/attack_blue_4_right.png";
+        }, 300);
+        setTimeout(function () {
+            src2.value = "sprite_blue/attack_blue_5_right.png";
+        }, 400);
+        setTimeout(function () {
+            src2.value = "sprite_blue/attack_blue_6_right.png";
+        }, 500);
+        setTimeout(function () {
+            src2.value = "sprite_red/practice_idle.png";
+        }, 600);
+    }
+
 }
 
 
