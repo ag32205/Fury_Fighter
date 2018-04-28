@@ -2,7 +2,7 @@ function Player(pos, speed, id) {
     this.pos = pos;
     this.speed = speed;
     this.id = id;
-    this.ypos = 555;
+    this.ypos = 537;
     var fighter = document.getElementById(this.id);
 
     this.move = function () {
@@ -16,6 +16,18 @@ function Player(pos, speed, id) {
 var Player1 = new Player(400, 2, 'player1');
 var Player2 = new Player(300, 2, 'player2');
 
+function Platform(pos, ypos, id) {
+    this.pos = pos;
+    this.ypos = ypos;
+    this.id = id;
+    var platform = document.getElementById(this.id);
+     platform.style.left = this.pos + 'px';
+    platform.style.top = this.ypos + 'px';
+}
+
+var Platform1 = new Platform(500,400,'platform');
+var Platform2 = new Platform(100,350,'platform2');
+var Platform3 = new Platform(390,100,'platform3');
 
 function Keyset(left, right, up) {
     this.l = left;
@@ -85,11 +97,11 @@ function jump() {
 var framerate = setInterval(jump, 2);
 
 function descend() {
-    if (keys.jumping === false && Player1.ypos < 555) {
+    if (keys.jumping === false && Player1.ypos < 537) {
         Player1.ypos = Player1.ypos + Player1.speed;
     }
     Player1.move();
-    if (keys1.jumping === false && Player2.ypos < 555) {
+    if (keys1.jumping === false && Player2.ypos < 537) {
         Player2.ypos = Player2.ypos + Player2.speed;
     }
     Player2.move();
