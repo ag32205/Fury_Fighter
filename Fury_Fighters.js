@@ -108,6 +108,7 @@ document.body.onkeydown = function frame(e) {
     if (e.keyCode === keys.l) { //left
         keys.moving = true;
         document.getElementById('player1').src = "sprite_red/practice_redrun_left.png";
+        document.getElementById('player1').direction = "left";
         keys.left = true;
         keys.right = false;
     }
@@ -122,6 +123,7 @@ document.body.onkeydown = function frame(e) {
     if (e.keyCode === keys.r) { //right
         keys.moving = true;
         document.getElementById('player1').src = "sprite_red/practice_redrun_right.png";
+        document.getElementById('player1').direction = "right";
         keys.right = true;
         keys.left = false;
     }

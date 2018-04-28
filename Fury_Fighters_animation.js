@@ -6,6 +6,8 @@ var direction2 = document.createAttribute('direction');
 var src = document.createAttribute('src');
 src2.value = "sprite_red/practice_idle.png";
 src.value = "sprite_red/practice_idle.png";
+direction1.value = "left";
+direction2.value = "right";
 img2.setAttributeNode(src2);
 img2.setAttributeNode(direction2);
 img.setAttributeNode(src);
@@ -14,29 +16,56 @@ img.setAttributeNode(direction1);
 function animate(e) {
 
     if (e.keyCode === 13) {
+        if (img.direction === "right") {
 
-        setTimeout(function () {
-            src.value = "sprite_red/practice_attack_2.png";
-        }, 1);
-        setTimeout(function () {
-            src.value = "sprite_red/practice_attack_3.png";
-        }, 100);
-        setTimeout(function () {
-            src.value = "sprite_red/practice_attack_4.png";
-        }, 200);
-        setTimeout(function () {
-            src.value = "sprite_red/practice_attack_5.png";
-        }, 300);
-        setTimeout(function () {
-            src.value = "sprite_red/practice_attack_6.png";
-        }, 400);
-        setTimeout(function () {
-            src.value = "sprite_red/practice_attack_7.png";
-        }, 500);
-        setTimeout(function () {
-            src.value = "sprite_red/practice_idle.png";
-        }, 600);
+            setTimeout(function () {
+                src.value = "sprite_red/practice_attack_2.png";
+            }, 1);
+            setTimeout(function () {
+                src.value = "sprite_red/practice_attack_3.png";
+            }, 100);
+            setTimeout(function () {
+                src.value = "sprite_red/practice_attack_4.png";
+            }, 200);
+            setTimeout(function () {
+                src.value = "sprite_red/practice_attack_5.png";
+            }, 300);
+            setTimeout(function () {
+                src.value = "sprite_red/practice_attack_6.png";
+            }, 400);
+            setTimeout(function () {
+                src.value = "sprite_red/practice_attack_7.png";
+            }, 500);
+            setTimeout(function () {
+                src.value = "sprite_red/practice_idle.png";
+            }, 600);
+        }
+        if (img.direction === "left") {
+
+            setTimeout(function () {
+                src.value = "sprite_red/red_attack_1_left.png";
+            }, 1);
+            setTimeout(function () {
+                src.value = "sprite_red/red_attack_2_left.png";
+            }, 100);
+            setTimeout(function () {
+                src.value = "sprite_red/red_attack_3_left.png";
+            }, 200);
+            setTimeout(function () {
+                src.value = "sprite_red/red_attack_4_left.png";
+            }, 300);
+            setTimeout(function () {
+                src.value = "sprite_red/red_attack_5_left.png";
+            }, 400);
+            setTimeout(function () {
+                src.value = "sprite_red/red_attack_6_left.png";
+            }, 500);
+            setTimeout(function () {
+                src.value = "sprite_red/practice_idle.png";
+            }, 600);
+        }
     }
+
     if (e.keyCode === 16) {
         if (img2.direction === "right") {
 
