@@ -23,31 +23,6 @@
 
 
 
-#platform {
-    width: 100px;
-    height: 10px;
-    background-color: black;
-    position: relative;
-    top: 300px;
-    left: 500px;
-}
-
-#platform2 {
-    width: 100px;
-    height: 10px;
-    background-color: black;
-    position: relative;
-
-}
-
-#platform3 {
-    width: 100px;
-    height: 10px;
-    background-color: black;
-    position: relative;
-
-}
-
 #health {
     height: 50px;
     width: 800px;
