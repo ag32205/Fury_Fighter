@@ -2,7 +2,7 @@ function Player(pos, speed, id) {
     this.pos = pos;
     this.speed = speed;
     this.id = id;
-    this.ypos = 537;
+    this.ypos = 565;
     var fighter = document.getElementById(this.id);
 
     this.move = function () {
@@ -20,18 +20,7 @@ var health1 = 20;
 var health2 = 20;
 
 
-function Platform(pos, ypos, id) {
-    this.pos = pos;
-    this.ypos = ypos;
-    this.id = id;
-    var platform = document.getElementById(this.id);
-    platform.style.left = this.pos + 'px';
-    platform.style.top = this.ypos + 'px';
-}
 
-var Platform1 = new Platform(500, 400, 'platform');
-var Platform2 = new Platform(100, 350, 'platform2');
-var Platform3 = new Platform(390, 100, 'platform3');
 
 function Keyset(left, right, up) {
     this.l = left;
@@ -78,17 +67,17 @@ function run() {
 var framerate = setInterval(run, 1);
 
 function jump() {
-
-        if (keys.up === true && Player1.ypos > -25) {
+    if (keys.jumping === true) {
+        if (keys.up === true && Player1.ypos > -15) {
             Player1.ypos = Player1.ypos - Player1.speed;
             document.getElementById('player1').src = "sprite_red/practice_float_red.png";
 
         }
         Player1.move();
-
+    }
 
     if (keys1.jumping === true) {
-        if (keys1.up === true && Player2.ypos > -25) {
+        if (keys1.up === true && Player2.ypos > -15) {
             Player2.ypos = Player2.ypos - Player2.speed;
             document.getElementById('player2').src = "sprite_blue/float_blue.png";
         }
@@ -106,23 +95,18 @@ var framerate = setInterval(jump, 2);
 
 function descend() {
 
-    if (Platform1.pos > Player1.pos < (Platform1.pos + 100) && Player1.ypos == Platform1.ypos) {
-        keys.decend = false;
-    }
-
-    if (keys.jumping === false && Player1.ypos < 537) {
-        Player1.ypos = Player1.ypos + Player1.speed;
-    }
 
 
-    if (keys.decend === false) {
+    if (keys.jumping === false && Player1.ypos < 565) {
         Player1.ypos = Player1.ypos + Player1.speed;
     }
 
     Player1.move();
-    if (keys1.jumping === false && Player2.ypos < 537) {
+
+    if (keys1.jumping === false && Player2.ypos < 565) {
         Player2.ypos = Player2.ypos + Player2.speed;
     }
+
     Player2.move();
 }
 var framerate = setInterval(descend, 2);
