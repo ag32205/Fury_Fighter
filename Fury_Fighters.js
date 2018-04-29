@@ -106,7 +106,7 @@ var framerate = setInterval(jump, 2);
 
 function descend() {
 
- if (Platform1.pos > Player1.pos < (Platform1.pos + 100) && Player1.ypos == Platform1.ypos) {
+    if (Platform1.pos > Player1.pos < (Platform1.pos + 100) && Player1.ypos == Platform1.ypos) {
         keys.decend = false;
     }
 
@@ -115,8 +115,8 @@ function descend() {
     }
 
 
-    if (keys.decend === false){
-         Player1.ypos = Player1.ypos + Player1.speed;
+    if (keys.decend === false) {
+        Player1.ypos = Player1.ypos + Player1.speed;
     }
 
     Player1.move();
@@ -128,7 +128,7 @@ function descend() {
 var framerate = setInterval(descend, 2);
 
 
-function Updatehealth(){
+function Updatehealth() {
     var bluehealth = document.getElementById('healthblue');
     var redhealth = document.getElementById('healthred');
     bluehealth.style.width = (health2 * 40) + 'px';
@@ -182,17 +182,23 @@ document.body.onkeydown = function frame(e) {
         if (document.getElementById('player1').direction === "right") {
             if (((Player2.pos + 50) < (Player1.pos + 25)) && ((Player2.pos + 50) > (Player1.pos - 5))) {
                 if ((Player2.ypos > (Player1.ypos - 20)) && (Player2.ypos < (Player1.ypos + 20))) {
-                health2 -= 1;
-                Updatehealth();
+                    health2 -= 1;
+                    Updatehealth();
+                    if (health2 === 0) {
+                        document.getElementById('redwins').textContent = "Red Wins!";
+                    }
                 }
             }
         }
         if (document.getElementById('player1').direction === "left") {
             if (((Player2.pos + 50) > (Player1.pos - 25)) && ((Player2.pos + 50) < (Player1.pos + 5))) {
-                if ((Player2.ypos > (Player1.ypos - 20)) && (Player2.ypos < (Player1.ypos + 20))){
-                health2 -= 1;
-                Updatehealth();
-            }
+                if ((Player2.ypos > (Player1.ypos - 20)) && (Player2.ypos < (Player1.ypos + 20))) {
+                    health2 -= 1;
+                    Updatehealth();
+                    if (health2 === 0) {
+                        document.getElementById('redwins').textContent = "Red Wins!";
+                    }
+                }
             }
 
         }
@@ -200,17 +206,23 @@ document.body.onkeydown = function frame(e) {
     if (e.keyCode === 16) {
         if (document.getElementById('player2').direction === "right") {
             if (((Player1.pos - 50) < (Player2.pos + 25)) && ((Player1.pos - 50) > (Player2.pos - 5))) {
-                if ((Player1.ypos > (Player2.ypos - 20)) && (Player1.ypos < (Player2.ypos + 20))){
-                health1 -= 1;
-                Updatehealth();
+                if ((Player1.ypos > (Player2.ypos - 20)) && (Player1.ypos < (Player2.ypos + 20))) {
+                    health1 -= 1;
+                    Updatehealth();
+                    if (health1 === 0) {
+                        document.getElementById('bluewins').textContent = "Blue Wins!";
+                    }
                 }
             }
         }
         if (document.getElementById('player2').direction === "left") {
             if (((Player1.pos - 50) > (Player2.pos - 25)) && ((Player1.pos - 50) < (Player2.pos + 5))) {
-                if ((Player1.ypos > (Player2.ypos - 20)) && (Player1.ypos < (Player2.ypos + 20))){
-                health1 -= 1;
-                Updatehealth();
+                if ((Player1.ypos > (Player2.ypos - 20)) && (Player1.ypos < (Player2.ypos + 20))) {
+                    health1 -= 1;
+                    Updatehealth();
+                    if (health1 === 0) {
+                        document.getElementById('bluewins').textContent = "Blue Wins!";
+                    }
                 }
             }
 

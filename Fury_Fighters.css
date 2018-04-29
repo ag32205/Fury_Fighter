@@ -20,7 +20,7 @@
     width: 50px;
 }
 
-#playermoving {}
+
 
 
 #platform {
@@ -66,4 +66,11 @@ position: relative;
     height: 25px;
 
     background-color: blue;
+}
+
+#bluewins {
+    color: blue;
+}
+#redwins {
+    color: red;
 }
