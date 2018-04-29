@@ -181,14 +181,18 @@ document.body.onkeydown = function frame(e) {
     if (e.keyCode === 13) {
         if (document.getElementById('player1').direction === "right") {
             if (((Player2.pos + 50) < (Player1.pos + 25)) && ((Player2.pos + 50) > (Player1.pos - 5))) {
+                if ((Player2.ypos > (Player1.ypos - 20)) && (Player2.ypos < (Player1.ypos + 20))) {
                 health2 -= 1;
                 Updatehealth();
+                }
             }
         }
         if (document.getElementById('player1').direction === "left") {
             if (((Player2.pos + 50) > (Player1.pos - 25)) && ((Player2.pos + 50) < (Player1.pos + 5))) {
+                if ((Player2.ypos > (Player1.ypos - 20)) && (Player2.ypos < (Player1.ypos + 20))){
                 health2 -= 1;
                 Updatehealth();
+            }
             }
 
         }
@@ -196,14 +200,18 @@ document.body.onkeydown = function frame(e) {
     if (e.keyCode === 16) {
         if (document.getElementById('player2').direction === "right") {
             if (((Player1.pos - 50) < (Player2.pos + 25)) && ((Player1.pos - 50) > (Player2.pos - 5))) {
+                if ((Player1.ypos > (Player2.ypos - 20)) && (Player1.ypos < (Player2.ypos + 20))){
                 health1 -= 1;
                 Updatehealth();
+                }
             }
         }
         if (document.getElementById('player2').direction === "left") {
             if (((Player1.pos - 50) > (Player2.pos - 25)) && ((Player1.pos - 50) < (Player2.pos + 5))) {
+                if ((Player1.ypos > (Player2.ypos - 20)) && (Player1.ypos < (Player2.ypos + 20))){
                 health1 -= 1;
                 Updatehealth();
+                }
             }
 
         }
