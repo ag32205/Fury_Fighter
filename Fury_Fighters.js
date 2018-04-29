@@ -16,18 +16,22 @@ function Player(pos, speed, id) {
 var Player1 = new Player(400, 2, 'player1');
 var Player2 = new Player(300, 2, 'player2');
 
+var health1 = 20;
+var health2 = 20;
+
+
 function Platform(pos, ypos, id) {
     this.pos = pos;
     this.ypos = ypos;
     this.id = id;
     var platform = document.getElementById(this.id);
-     platform.style.left = this.pos + 'px';
+    platform.style.left = this.pos + 'px';
     platform.style.top = this.ypos + 'px';
 }
 
-var Platform1 = new Platform(500,400,'platform');
-var Platform2 = new Platform(100,350,'platform2');
-var Platform3 = new Platform(390,100,'platform3');
+var Platform1 = new Platform(500, 400, 'platform');
+var Platform2 = new Platform(100, 350, 'platform2');
+var Platform3 = new Platform(390, 100, 'platform3');
 
 function Keyset(left, right, up) {
     this.l = left;
@@ -82,15 +86,15 @@ function jump() {
         Player1.move();
     }
 
-        if (keys1.jumping === true) {
-            if (keys1.up === true && Player2.ypos > -25) {
-                Player2.ypos = Player2.ypos - Player2.speed;
-                document.getElementById('player2').src = "sprite_blue/float_blue.png";
-            }
-            Player2.move();
+    if (keys1.jumping === true) {
+        if (keys1.up === true && Player2.ypos > -25) {
+            Player2.ypos = Player2.ypos - Player2.speed;
+            document.getElementById('player2').src = "sprite_blue/float_blue.png";
         }
-
+        Player2.move();
     }
+
+}
 
 
 
@@ -107,6 +111,15 @@ function descend() {
     Player2.move();
 }
 var framerate = setInterval(descend, 2);
+
+
+function Updatehealth(){
+    var bluehealth = document.getElementById('healthblue');
+    var redhealth = document.getElementById('healthred');
+    bluehealth.style.width = (health2 * 40) + 'px';
+    redhealth.style.width = (health1 * 40) + 'px';
+
+}
 
 document.body.onkeydown = function frame(e) {
 
@@ -150,9 +163,41 @@ document.body.onkeydown = function frame(e) {
         document.getElementById('player2').src = "sprite_blue/float_blue.png";
 
     }
+    if (e.keyCode === 13) {
+        if (document.getElementById('player1').direction === "right") {
+            if (((Player2.pos + 50) < (Player1.pos + 25)) && ((Player2.pos + 50) > (Player1.pos - 5))) {
+                health2 -= 1;
+                Updatehealth();
+            }
+        }
+        if (document.getElementById('player1').direction === "left") {
+            if (((Player2.pos + 50) > (Player1.pos - 25)) && ((Player2.pos + 50) < (Player1.pos + 5))) {
+                health2 -= 1;
+                Updatehealth();
+            }
+
+        }
+    }
+    if (e.keyCode === 16) {
+        if (document.getElementById('player2').direction === "right") {
+            if (((Player1.pos - 50) < (Player2.pos + 25)) && ((Player1.pos - 50) > (Player2.pos - 5))) {
+                health1 -= 1;
+                Updatehealth();
+            }
+        }
+        if (document.getElementById('player2').direction === "left") {
+            if (((Player1.pos - 50) > (Player2.pos - 25)) && ((Player1.pos - 50) < (Player2.pos + 5))) {
+                health1 -= 1;
+                Updatehealth();
+            }
+
+        }
+    }
 
 
 };
+
+
 
 function stop(e) {
     if (e.keyCode === keys.r || e.keyCode === keys.l) {

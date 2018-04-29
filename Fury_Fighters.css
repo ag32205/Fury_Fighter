@@ -49,13 +49,14 @@
 #health {
     height: 50px;
     width: 800px;
-
+position: relative;
 }
 
 #healthred {
     height: 25px;
-    width: 800px;
+
     background-color: red;
+    position: relative;
 
 
 
@@ -63,6 +64,6 @@
 
 #healthblue {
     height: 25px;
-    width: 800px;
+
     background-color: blue;
 }
