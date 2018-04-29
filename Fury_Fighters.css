@@ -72,8 +72,22 @@
 
 #bluewins {
     color: blue;
+      margin-left: 40%;
+    margin-right: 35%;
 }
 
 #redwins {
     color: red;
+    margin-left: 40%;
+    margin-right: 35%;
+}
+#blue {
+    color: blue;
+}
+#red {
+    color: red;
+}
+#game {
+    margin-left: 20%;
+    margin-right: 20%;
 }
