@@ -31,6 +31,7 @@
     top: 300px;
     left: 500px;
 }
+
 #platform2 {
     width: 100px;
     height: 10px;
@@ -38,6 +39,7 @@
     position: relative;
 
 }
+
 #platform3 {
     width: 100px;
     height: 10px;
@@ -49,7 +51,7 @@
 #health {
     height: 50px;
     width: 800px;
-position: relative;
+    position: relative;
 }
 
 #healthred {
@@ -71,6 +73,7 @@ position: relative;
 #bluewins {
     color: blue;
 }
+
 #redwins {
     color: red;
 }
