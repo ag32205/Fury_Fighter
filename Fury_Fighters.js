@@ -168,7 +168,7 @@ document.body.onkeydown = function frame(e) {
                 if ((Player2.ypos > (Player1.ypos - 20)) && (Player2.ypos < (Player1.ypos + 20))) {
                     health2 -= 1;
                     Updatehealth();
-                    if (health2 === 0) {
+                    if (health2 === 0 && document.getElementById('bluewins').textContent !== "Blue Wins!") {
                         document.getElementById('redwins').textContent = "Red Wins!";
                     }
                 }
@@ -179,7 +179,7 @@ document.body.onkeydown = function frame(e) {
                 if ((Player2.ypos > (Player1.ypos - 20)) && (Player2.ypos < (Player1.ypos + 20))) {
                     health2 -= 1;
                     Updatehealth();
-                    if (health2 === 0) {
+                    if (health2 === 0 && document.getElementById('bluewins').textContent !== "Blue Wins!") {
                         document.getElementById('redwins').textContent = "Red Wins!";
                     }
                 }
@@ -193,7 +193,7 @@ document.body.onkeydown = function frame(e) {
                 if ((Player1.ypos > (Player2.ypos - 20)) && (Player1.ypos < (Player2.ypos + 20))) {
                     health1 -= 1;
                     Updatehealth();
-                    if (health1 === 0) {
+                    if (health1 === 0 && document.getElementById('redwins').textContent !== "Red Wins!") {
                         document.getElementById('bluewins').textContent = "Blue Wins!";
                     }
                 }
@@ -204,7 +204,7 @@ document.body.onkeydown = function frame(e) {
                 if ((Player1.ypos > (Player2.ypos - 20)) && (Player1.ypos < (Player2.ypos + 20))) {
                     health1 -= 1;
                     Updatehealth();
-                    if (health1 === 0) {
+                    if (health1 === 0 && document.getElementById('redwins').textContent !== "Red Wins!") {
                         document.getElementById('bluewins').textContent = "Blue Wins!";
                     }
                 }
