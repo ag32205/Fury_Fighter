@@ -228,7 +228,7 @@ function stop(e) {
         keys.jumping = false;
         document.getElementById('player1').src = "sprite_red/practice_idle.png";
     }
-    if (e.keyCode || keys1.r && e.keyCode === keys1.l) {
+    if (e.keyCode === keys1.r || e.keyCode === keys1.l) {
         keys1.moving = false;
         document.getElementById('player2').src = "sprite_red/practice_idle.png";
     }
