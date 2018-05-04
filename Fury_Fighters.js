@@ -234,7 +234,7 @@ function stop(e) {
     }
     if (e.keyCode === keys1.u) {
         keys1.jumping = false;
-        document.getElementById('player1').src = "sprite_red/practice_idle.png";
+        document.getElementById('player2').src = "sprite_red/practice_idle.png";
     }
 
 
