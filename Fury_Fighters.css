@@ -38,6 +38,18 @@
 
 
 }
+#platform1 {
+    position: relative;
+    background-color: black;
+}
+#platform2 {
+    position: relative;
+    background-color: black;
+}
+#platform3 {
+    position: relative;
+    background-color: black;
+}
 
 #healthblue {
     height: 25px;

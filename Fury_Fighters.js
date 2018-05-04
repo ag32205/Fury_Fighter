@@ -19,7 +19,21 @@ var Player2 = new Player(300, 2, 'player2');
 var health1 = 20;
 var health2 = 20;
 
+function Platform(xpos, ypos, width, id){
+    this.xpos = xpos;
+    this.ypos = ypos;
+    this.width = width;
+    this.id = id;
+    var p = document.getElementById(this.id);
+    p.style.left = this.xpos + 'px';
+    p.style.top = this.ypos + 'px';
+    p.style.width = this.width + 'px';
+    p.style.height = '5px';
+}
 
+var platform1 = new Platform(400, 200, 100, 'platform1');
+var platform2 = new Platform(300, 200, 100, 'platform2');
+var platform3 = new Platform(200, 200, 100, 'platform3');
 
 
 function Keyset(left, right, up) {
@@ -96,9 +110,13 @@ var framerate = setInterval(jump, 2);
 function descend() {
 
 
-
     if (keys.jumping === false && Player1.ypos < 565) {
+        if (Player1.ypos !== platform1.ypos){
+
         Player1.ypos = Player1.ypos + Player1.speed;
+        }
+
+
     }
 
     Player1.move();
@@ -226,6 +244,7 @@ function stop(e) {
     }
     if (e.keyCode === keys.u) {
         keys.jumping = false;
+        keys.descend = true;
         document.getElementById('player1').src = "sprite_red/practice_idle.png";
     }
     if (e.keyCode === keys1.r || e.keyCode === keys1.l) {
@@ -234,6 +253,7 @@ function stop(e) {
     }
     if (e.keyCode === keys1.u) {
         keys1.jumping = false;
+        keys1.descend = true;
         document.getElementById('player2').src = "sprite_red/practice_idle.png";
     }
 
