@@ -107,15 +107,24 @@ function jump() {
 
 var framerate = setInterval(jump, 2);
 
-function descend() {
+function descendTest() {
+    if (Player1.ypos === platform1.ypos && (Player1.pos > (platform1.xpos - 50) && Player1.pos < (platform1.xpos + 50)) ){
+        keys.descend = false;
+    } else {
+        keys.descend = true;
+    }
+}
+var descendtestrate = setInterval(descendTest, 2);
 
+function descend() {
+if (keys.descend === true){
 
     if (keys.jumping === false && Player1.ypos < 565) {
-        if (Player1.ypos !== platform1.ypos){
+
 
         Player1.ypos = Player1.ypos + Player1.speed;
-        }
 
+    }
 
     }
 
