@@ -3,6 +3,7 @@ function Player(pos, speed, id) {
     this.speed = speed;
     this.id = id;
     this.ypos = 565;
+    this.alive = true;
     var fighter = document.getElementById(this.id);
 
     this.move = function () {
@@ -19,7 +20,7 @@ var Player2 = new Player(300, 2, 'player2');
 var health1 = 20;
 var health2 = 20;
 
-function Platform(xpos, ypos, width, id){
+function Platform(xpos, ypos, width, id) {
     this.xpos = xpos;
     this.ypos = ypos;
     this.width = width;
@@ -108,7 +109,7 @@ function jump() {
 var framerate = setInterval(jump, 2);
 
 function descendTest() {
-    if (Player1.ypos === platform1.ypos && (Player1.pos > (platform1.xpos - 50) && Player1.pos < (platform1.xpos + 50)) ){
+    if (Player1.ypos === platform1.ypos && (Player1.pos > (platform1.xpos - 50) && Player1.pos < (platform1.xpos + 50))) {
         keys.descend = false;
     } else {
         keys.descend = true;
@@ -117,14 +118,14 @@ function descendTest() {
 var descendtestrate = setInterval(descendTest, 2);
 
 function descend() {
-if (keys.descend === true){
+    if (keys.descend === true) {
 
-    if (keys.jumping === false && Player1.ypos < 565) {
+        if (keys.jumping === false && Player1.ypos < 565) {
 
 
-        Player1.ypos = Player1.ypos + Player1.speed;
+            Player1.ypos = Player1.ypos + Player1.speed;
 
-    }
+        }
 
     }
 
@@ -148,97 +149,107 @@ function Updatehealth() {
 }
 
 document.body.onkeydown = function frame(e) {
+    if (Player2.alive === true) {
+        if (e.keyCode === keys1.l) { //a
+            keys1.moving = true;
+            document.getElementById('player2').src = "sprite_blue/bluerun_left.png";
+            document.getElementById('player2').direction = "left";
+            keys1.left = true;
+            keys1.right = false;
+        }
+        if (e.keyCode === keys1.r) { //d
+            keys1.moving = true;
+            document.getElementById('player2').src = "sprite_blue/bluerun_right.png";
+            document.getElementById('player2').direction = "right";
+            keys1.right = true;
+            keys1.left = false;
 
-    if (e.keyCode === keys1.l) { //a
-        keys1.moving = true;
-        document.getElementById('player2').src = "sprite_blue/bluerun_left.png";
-        document.getElementById('player2').direction = "left";
-        keys1.left = true;
-        keys1.right = false;
-    }
-    if (e.keyCode === keys.l) { //left
-        keys.moving = true;
-        document.getElementById('player1').src = "sprite_red/practice_redrun_left.png";
-        document.getElementById('player1').direction = "left";
-        keys.left = true;
-        keys.right = false;
-    }
-    if (e.keyCode === keys1.r) { //d
-        keys1.moving = true;
-        document.getElementById('player2').src = "sprite_blue/bluerun_right.png";
-        document.getElementById('player2').direction = "right";
-        keys1.right = true;
-        keys1.left = false;
+        }
+        if (e.keyCode === keys1.u) { //w
+            keys1.jumping = true;
+            keys1.up = true;
+            document.getElementById('player2').src = "sprite_blue/float_blue.png";
 
-    }
-    if (e.keyCode === keys.r) { //right
-        keys.moving = true;
-        document.getElementById('player1').src = "sprite_red/practice_redrun_right.png";
-        document.getElementById('player1').direction = "right";
-        keys.right = true;
-        keys.left = false;
-    }
-    if (e.keyCode === keys.u) { //up
-        keys.up = true;
-        keys.jumping = true;
-        document.getElementById('player1').src = "sprite_red/practice_float_red.png";
-    }
-    if (e.keyCode === keys1.u) { //w
-        keys1.jumping = true;
-        keys1.up = true;
-        document.getElementById('player2').src = "sprite_blue/float_blue.png";
-
-    }
-    if (e.keyCode === 13) {
-        if (document.getElementById('player1').direction === "right") {
-            if (((Player2.pos + 50) < (Player1.pos + 25)) && ((Player2.pos + 50) > (Player1.pos - 5))) {
-                if ((Player2.ypos > (Player1.ypos - 20)) && (Player2.ypos < (Player1.ypos + 20))) {
-                    health2 -= 1;
-                    Updatehealth();
-                    if (health2 === 0 && document.getElementById('bluewins').textContent !== "Blue Wins!") {
-                        document.getElementById('redwins').textContent = "Red Wins!";
+        }
+        if (e.keyCode === 16) {
+            if (document.getElementById('player2').direction === "right") {
+                if (((Player1.pos - 50) < (Player2.pos + 25)) && ((Player1.pos - 50) > (Player2.pos - 5))) {
+                    if ((Player1.ypos > (Player2.ypos - 20)) && (Player1.ypos < (Player2.ypos + 20))) {
+                        health1 -= 1;
+                        Updatehealth();
+                        if (health1 === 0 && document.getElementById('redwins').textContent !== "Red Wins!") {
+                            document.getElementById('bluewins').textContent = "Blue Wins!";
+                            Player1.alive = false;
+                        }
                     }
                 }
             }
-        }
-        if (document.getElementById('player1').direction === "left") {
-            if (((Player2.pos + 50) > (Player1.pos - 25)) && ((Player2.pos + 50) < (Player1.pos + 5))) {
-                if ((Player2.ypos > (Player1.ypos - 20)) && (Player2.ypos < (Player1.ypos + 20))) {
-                    health2 -= 1;
-                    Updatehealth();
-                    if (health2 === 0 && document.getElementById('bluewins').textContent !== "Blue Wins!") {
-                        document.getElementById('redwins').textContent = "Red Wins!";
+            if (document.getElementById('player2').direction === "left") {
+                if (((Player1.pos - 50) > (Player2.pos - 25)) && ((Player1.pos - 50) < (Player2.pos + 5))) {
+                    if ((Player1.ypos > (Player2.ypos - 20)) && (Player1.ypos < (Player2.ypos + 20))) {
+                        health1 -= 1;
+                        Updatehealth();
+                        if (health1 === 0 && document.getElementById('redwins').textContent !== "Red Wins!") {
+                            document.getElementById('bluewins').textContent = "Blue Wins!";
+                            Player1.alive = false;
+                        }
                     }
                 }
-            }
 
+            }
         }
     }
-    if (e.keyCode === 16) {
-        if (document.getElementById('player2').direction === "right") {
-            if (((Player1.pos - 50) < (Player2.pos + 25)) && ((Player1.pos - 50) > (Player2.pos - 5))) {
-                if ((Player1.ypos > (Player2.ypos - 20)) && (Player1.ypos < (Player2.ypos + 20))) {
-                    health1 -= 1;
-                    Updatehealth();
-                    if (health1 === 0 && document.getElementById('redwins').textContent !== "Red Wins!") {
-                        document.getElementById('bluewins').textContent = "Blue Wins!";
-                    }
-                }
-            }
+    if (Player1.alive === true) {
+        if (e.keyCode === keys.l) { //left
+            keys.moving = true;
+            document.getElementById('player1').src = "sprite_red/practice_redrun_left.png";
+            document.getElementById('player1').direction = "left";
+            keys.left = true;
+            keys.right = false;
         }
-        if (document.getElementById('player2').direction === "left") {
-            if (((Player1.pos - 50) > (Player2.pos - 25)) && ((Player1.pos - 50) < (Player2.pos + 5))) {
-                if ((Player1.ypos > (Player2.ypos - 20)) && (Player1.ypos < (Player2.ypos + 20))) {
-                    health1 -= 1;
-                    Updatehealth();
-                    if (health1 === 0 && document.getElementById('redwins').textContent !== "Red Wins!") {
-                        document.getElementById('bluewins').textContent = "Blue Wins!";
+
+        if (e.keyCode === keys.r) { //right
+            keys.moving = true;
+            document.getElementById('player1').src = "sprite_red/practice_redrun_right.png";
+            document.getElementById('player1').direction = "right";
+            keys.right = true;
+            keys.left = false;
+        }
+        if (e.keyCode === keys.u) { //up
+            keys.up = true;
+            keys.jumping = true;
+            document.getElementById('player1').src = "sprite_red/practice_float_red.png";
+        }
+        if (e.keyCode === 13) {
+            if (document.getElementById('player1').direction === "right") {
+                if (((Player2.pos + 50) < (Player1.pos + 25)) && ((Player2.pos + 50) > (Player1.pos - 5))) {
+                    if ((Player2.ypos > (Player1.ypos - 20)) && (Player2.ypos < (Player1.ypos + 20))) {
+                        health2 -= 1;
+                        Updatehealth();
+                        if (health2 === 0 && document.getElementById('bluewins').textContent !== "Blue Wins!") {
+                            document.getElementById('redwins').textContent = "Red Wins!";
+                            Player2.alive = false;
+                        }
                     }
                 }
             }
+            if (document.getElementById('player1').direction === "left") {
+                if (((Player2.pos + 50) > (Player1.pos - 25)) && ((Player2.pos + 50) < (Player1.pos + 5))) {
+                    if ((Player2.ypos > (Player1.ypos - 20)) && (Player2.ypos < (Player1.ypos + 20))) {
+                        health2 -= 1;
+                        Updatehealth();
+                        if (health2 === 0 && document.getElementById('bluewins').textContent !== "Blue Wins!") {
+                            document.getElementById('redwins').textContent = "Red Wins!";
+                            Player2.alive = false;
+                        }
+                    }
+                }
 
+            }
         }
     }
+
+
 
 
 };
