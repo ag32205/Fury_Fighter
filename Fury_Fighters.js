@@ -180,6 +180,7 @@ document.body.onkeydown = function frame(e) {
                         if (health1 === 0 && document.getElementById('redwins').textContent !== "Red Wins!") {
                             document.getElementById('bluewins').textContent = "Blue Wins!";
                             Player1.alive = false;
+                            die();
                         }
                     }
                 }
@@ -192,6 +193,7 @@ document.body.onkeydown = function frame(e) {
                         if (health1 === 0 && document.getElementById('redwins').textContent !== "Red Wins!") {
                             document.getElementById('bluewins').textContent = "Blue Wins!";
                             Player1.alive = false;
+                            die();
                         }
                     }
                 }
@@ -241,6 +243,7 @@ document.body.onkeydown = function frame(e) {
                         if (health2 === 0 && document.getElementById('bluewins').textContent !== "Blue Wins!") {
                             document.getElementById('redwins').textContent = "Red Wins!";
                             Player2.alive = false;
+
                         }
                     }
                 }
@@ -252,6 +255,42 @@ document.body.onkeydown = function frame(e) {
 };
 
 
+
+function die() {
+    var player11 = document.getElementById('player1');
+    setTimeout(function () {
+        player11.src = "death/dead1.png";
+    }, 50);
+    setTimeout(function () {
+        player11.src = "death/dead2redright.png";
+    }, 100);
+    setTimeout(function () {
+        player11.src = "death/dead3redright.png";
+    }, 150);
+    setTimeout(function () {
+        player11.src = "death/dead4redright.png";
+    }, 200);
+    setTimeout(function () {
+        player11.src = "death/dead5redright.png";
+    }, 250);
+    setTimeout(function () {
+        player11.src = "death/dead6redright.png";
+    }, 350);
+    setTimeout(function () {
+        player11.src = "death/dead7redright.png";
+    }, 400);
+    setTimeout(function () {
+        player11.src = "death/dead8redright.png";
+    }, 450);
+    setTimeout(function () {
+        player11.src = "death/dead9redright.png";
+    }, 500);
+    setTimeout(function () {
+        player11.src = "death/dead10redright.png";
+    }, 550);
+
+
+}
 
 function stop(e) {
     if (e.keyCode === keys.r || e.keyCode === keys.l) {

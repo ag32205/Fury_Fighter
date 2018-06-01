@@ -14,7 +14,9 @@ img.setAttributeNode(src);
 img.setAttributeNode(direction1);
 
 function animate(e) {
-
+if (e.keyCode === 80){
+    die();
+}
     if (e.keyCode === 13) {
         if (img.direction === "right") {
 
