@@ -4,6 +4,7 @@ function Player(pos, speed, id) {
     this.id = id;
     this.ypos = 565;
     this.alive = true;
+    this.health = 20;
     var fighter = document.getElementById(this.id);
 
     this.move = function () {
@@ -143,8 +144,8 @@ var framerate = setInterval(descend, 2);
 function Updatehealth() {
     var bluehealth = document.getElementById('healthblue');
     var redhealth = document.getElementById('healthred');
-    bluehealth.style.width = (health2 * 40) + 'px';
-    redhealth.style.width = (health1 * 40) + 'px';
+    bluehealth.style.width = (Player2.health * 40) + 'px';
+    redhealth.style.width = (Player1.health * 40) + 'px';
 
 }
 
@@ -175,9 +176,9 @@ document.body.onkeydown = function frame(e) {
             if (document.getElementById('player2').direction === "right") {
                 if (((Player1.pos - 50) < (Player2.pos + 25)) && ((Player1.pos - 50) > (Player2.pos - 5))) {
                     if ((Player1.ypos > (Player2.ypos - 20)) && (Player1.ypos < (Player2.ypos + 20))) {
-                        health1 -= 1;
+                        Player1.health -= 1;
                         Updatehealth();
-                        if (health1 === 0 && document.getElementById('redwins').textContent !== "Red Wins!") {
+                        if (Player1.health === 0 && document.getElementById('redwins').textContent !== "Red Wins!") {
                             document.getElementById('bluewins').textContent = "Blue Wins!";
                             Player1.alive = false;
                             die();
@@ -188,9 +189,9 @@ document.body.onkeydown = function frame(e) {
             if (document.getElementById('player2').direction === "left") {
                 if (((Player1.pos - 50) > (Player2.pos - 25)) && ((Player1.pos - 50) < (Player2.pos + 5))) {
                     if ((Player1.ypos > (Player2.ypos - 20)) && (Player1.ypos < (Player2.ypos + 20))) {
-                        health1 -= 1;
+                        Player1.health -= 1;
                         Updatehealth();
-                        if (health1 === 0 && document.getElementById('redwins').textContent !== "Red Wins!") {
+                        if (Player1.health === 0 && document.getElementById('redwins').textContent !== "Red Wins!") {
                             document.getElementById('bluewins').textContent = "Blue Wins!";
                             Player1.alive = false;
                             die();
@@ -226,11 +227,12 @@ document.body.onkeydown = function frame(e) {
             if (document.getElementById('player1').direction === "right") {
                 if (((Player2.pos + 50) < (Player1.pos + 25)) && ((Player2.pos + 50) > (Player1.pos - 5))) {
                     if ((Player2.ypos > (Player1.ypos - 20)) && (Player2.ypos < (Player1.ypos + 20))) {
-                        health2 -= 1;
+                        Player2.health -= 1;
                         Updatehealth();
-                        if (health2 === 0 && document.getElementById('bluewins').textContent !== "Blue Wins!") {
+                        if (Player2.health === 0 && document.getElementById('bluewins').textContent !== "Blue Wins!") {
                             document.getElementById('redwins').textContent = "Red Wins!";
                             Player2.alive = false;
+                            die2();
                         }
                     }
                 }
@@ -238,12 +240,12 @@ document.body.onkeydown = function frame(e) {
             if (document.getElementById('player1').direction === "left") {
                 if (((Player2.pos + 50) > (Player1.pos - 25)) && ((Player2.pos + 50) < (Player1.pos + 5))) {
                     if ((Player2.ypos > (Player1.ypos - 20)) && (Player2.ypos < (Player1.ypos + 20))) {
-                        health2 -= 1;
+                        Player2.health -= 1;
                         Updatehealth();
-                        if (health2 === 0 && document.getElementById('bluewins').textContent !== "Blue Wins!") {
+                        if (Player2.health === 0 && document.getElementById('bluewins').textContent !== "Blue Wins!") {
                             document.getElementById('redwins').textContent = "Red Wins!";
                             Player2.alive = false;
-
+                            die2();
                         }
                     }
                 }
@@ -292,27 +294,66 @@ function die() {
 
 }
 
+function die2() {
+    var player11 = document.getElementById('player2');
+    setTimeout(function () {
+        player11.src = "death/dead1.png";
+    }, 50);
+    setTimeout(function () {
+        player11.src = "death/dead2redright.png";
+    }, 100);
+    setTimeout(function () {
+        player11.src = "death/dead3redright.png";
+    }, 150);
+    setTimeout(function () {
+        player11.src = "death/dead4redright.png";
+    }, 200);
+    setTimeout(function () {
+        player11.src = "death/dead5redright.png";
+    }, 250);
+    setTimeout(function () {
+        player11.src = "death/dead6redright.png";
+    }, 350);
+    setTimeout(function () {
+        player11.src = "death/dead7redright.png";
+    }, 400);
+    setTimeout(function () {
+        player11.src = "death/dead8redright.png";
+    }, 450);
+    setTimeout(function () {
+        player11.src = "death/dead9redright.png";
+    }, 500);
+    setTimeout(function () {
+        player11.src = "death/dead10redright.png";
+    }, 550);
+
+
+}
+
 function stop(e) {
-    if (e.keyCode === keys.r || e.keyCode === keys.l) {
-        keys.moving = false;
+    if (Player1.alive === true) {
+        if (e.keyCode === keys.r || e.keyCode === keys.l) {
+            keys.moving = false;
 
-        document.getElementById('player1').src = "sprite_red/practice_idle.png";
+            document.getElementById('player1').src = "sprite_red/practice_idle.png";
+        }
+        if (e.keyCode === keys.u) {
+            keys.jumping = false;
+            keys.descend = true;
+            document.getElementById('player1').src = "sprite_red/practice_idle.png";
+        }
     }
-    if (e.keyCode === keys.u) {
-        keys.jumping = false;
-        keys.descend = true;
-        document.getElementById('player1').src = "sprite_red/practice_idle.png";
+    if (Player2.alive === true) {
+        if (e.keyCode === keys1.r || e.keyCode === keys1.l) {
+            keys1.moving = false;
+            document.getElementById('player2').src = "sprite_red/practice_idle.png";
+        }
+        if (e.keyCode === keys1.u) {
+            keys1.jumping = false;
+            keys1.descend = true;
+            document.getElementById('player2').src = "sprite_red/practice_idle.png";
+        }
     }
-    if (e.keyCode === keys1.r || e.keyCode === keys1.l) {
-        keys1.moving = false;
-        document.getElementById('player2').src = "sprite_red/practice_idle.png";
-    }
-    if (e.keyCode === keys1.u) {
-        keys1.jumping = false;
-        keys1.descend = true;
-        document.getElementById('player2').src = "sprite_red/practice_idle.png";
-    }
-
 
 };
 
