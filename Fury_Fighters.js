@@ -3,9 +3,20 @@ function Player(pos, speed, id) {
     this.speed = speed;
     this.id = id;
     this.ypos = 565;
-    this.alive = true;
+    this.alive = "true";
     this.health = 20;
+    var alive = document.createAttribute('alive');
+    var src = document.createAttribute('src');
+    var direction = document.createAttribute('direction');
+    alive.value = this.alive;
+    this.src = "sprite_red/practice_idle.png";
+    src.value = this.src;
+    this.direction = "left";
+    direction.value = this.direction;
     var fighter = document.getElementById(this.id);
+    fighter.setAttributeNode(src);
+    fighter.setAttributeNode(direction);
+    fighter.setAttributeNode(alive);
 
     this.move = function () {
         fighter.style.left = this.pos + 'px';
@@ -17,25 +28,9 @@ function Player(pos, speed, id) {
 }
 var Player1 = new Player(400, 2, 'player1');
 var Player2 = new Player(300, 2, 'player2');
+var player1 = document.getElementById('player1');
+var player2 = document.getElementById('player2');
 
-var health1 = 20;
-var health2 = 20;
-
-function Platform(xpos, ypos, width, id) {
-    this.xpos = xpos;
-    this.ypos = ypos;
-    this.width = width;
-    this.id = id;
-    var p = document.getElementById(this.id);
-    p.style.left = this.xpos + 'px';
-    p.style.top = this.ypos + 'px';
-    p.style.width = this.width + 'px';
-    p.style.height = '5px';
-}
-
-var platform1 = new Platform(400, 200, 100, 'platform1');
-var platform2 = new Platform(300, 200, 100, 'platform2');
-var platform3 = new Platform(200, 200, 100, 'platform3');
 
 
 function Keyset(left, right, up) {
@@ -57,7 +52,7 @@ var iskeydown = Boolean;
 
 
 function run() {
-    if (keys.moving === true) {
+    if (keys.moving === "true") {
         if (keys.left === true && Player1.pos > -20) {
             Player1.pos = Player1.pos - Player1.speed;
         }
@@ -69,7 +64,7 @@ function run() {
 
         Player1.move();
     }
-    if (keys1.moving === true) {
+    if (keys1.moving === "true") {
         if (keys1.left === true && Player2.pos > -75) {
             Player2.pos = Player2.pos - Player2.speed;
         }
@@ -83,19 +78,19 @@ function run() {
 var framerate = setInterval(run, 1);
 
 function jump() {
-    if (keys.jumping === true) {
+    if (keys.jumping === "true") {
         if (keys.up === true && Player1.ypos > -15) {
             Player1.ypos = Player1.ypos - Player1.speed;
-            document.getElementById('player1').src = "sprite_red/practice_float_red.png";
+            player1.src = "sprite_red/practice_float_red.png";
 
         }
         Player1.move();
     }
 
-    if (keys1.jumping === true) {
+    if (keys1.jumping === "true") {
         if (keys1.up === true && Player2.ypos > -15) {
             Player2.ypos = Player2.ypos - Player2.speed;
-            document.getElementById('player2').src = "sprite_blue/float_blue.png";
+            player2.src = "sprite_blue/float_blue.png";
         }
         Player2.move();
 
@@ -109,14 +104,8 @@ function jump() {
 
 var framerate = setInterval(jump, 2);
 
-function descendTest() {
-    if (Player1.ypos === platform1.ypos && (Player1.pos > (platform1.xpos - 50) && Player1.pos < (platform1.xpos + 50))) {
-        keys.descend = false;
-    } else {
-        keys.descend = true;
-    }
-}
-var descendtestrate = setInterval(descendTest, 2);
+
+
 
 function descend() {
     if (keys.descend === true) {
@@ -150,18 +139,18 @@ function Updatehealth() {
 }
 
 document.body.onkeydown = function frame(e) {
-    if (Player2.alive === true) {
+    if (player2.alive === "true") {
         if (e.keyCode === keys1.l) { //a
             keys1.moving = true;
-            document.getElementById('player2').src = "sprite_blue/bluerun_left.png";
-            document.getElementById('player2').direction = "left";
+            player2.src = "sprite_blue/bluerun_left.png";
+            player2.direction = "left";
             keys1.left = true;
             keys1.right = false;
         }
         if (e.keyCode === keys1.r) { //d
             keys1.moving = true;
-            document.getElementById('player2').src = "sprite_blue/bluerun_right.png";
-            document.getElementById('player2').direction = "right";
+            player2.src = "sprite_blue/bluerun_right.png";
+            player2.direction = "right";
             keys1.right = true;
             keys1.left = false;
 
@@ -169,31 +158,31 @@ document.body.onkeydown = function frame(e) {
         if (e.keyCode === keys1.u) { //w
             keys1.jumping = true;
             keys1.up = true;
-            document.getElementById('player2').src = "sprite_blue/float_blue.png";
+            player2.src = "sprite_blue/float_blue.png";
 
         }
         if (e.keyCode === 16) {
-            if (document.getElementById('player2').direction === "right") {
+            if (player2.direction === "right") {
                 if (((Player1.pos - 50) < (Player2.pos + 25)) && ((Player1.pos - 50) > (Player2.pos - 5))) {
                     if ((Player1.ypos > (Player2.ypos - 20)) && (Player1.ypos < (Player2.ypos + 20))) {
                         Player1.health -= 1;
                         Updatehealth();
                         if (Player1.health === 0 && document.getElementById('redwins').textContent !== "Red Wins!") {
                             document.getElementById('bluewins').textContent = "Blue Wins!";
-                            Player1.alive = false;
+                            player1.alive = "false";
                             die();
                         }
                     }
                 }
             }
-            if (document.getElementById('player2').direction === "left") {
+            if (player2.direction === "left") {
                 if (((Player1.pos - 50) > (Player2.pos - 25)) && ((Player1.pos - 50) < (Player2.pos + 5))) {
                     if ((Player1.ypos > (Player2.ypos - 20)) && (Player1.ypos < (Player2.ypos + 20))) {
                         Player1.health -= 1;
                         Updatehealth();
                         if (Player1.health === 0 && document.getElementById('redwins').textContent !== "Red Wins!") {
                             document.getElementById('bluewins').textContent = "Blue Wins!";
-                            Player1.alive = false;
+                            player1.alive = "false";
                             die();
                         }
                     }
@@ -202,49 +191,49 @@ document.body.onkeydown = function frame(e) {
             }
         }
     }
-    if (Player1.alive === true) {
+    if (player1.alive === true) {
         if (e.keyCode === keys.l) { //left
             keys.moving = true;
-            document.getElementById('player1').src = "sprite_red/practice_redrun_left.png";
-            document.getElementById('player1').direction = "left";
+            player1.src = "sprite_red/practice_redrun_left.png";
+            player1.direction = "left";
             keys.left = true;
             keys.right = false;
         }
 
         if (e.keyCode === keys.r) { //right
             keys.moving = true;
-            document.getElementById('player1').src = "sprite_red/practice_redrun_right.png";
-            document.getElementById('player1').direction = "right";
+            player1.src = "sprite_red/practice_redrun_right.png";
+            player1.direction = "right";
             keys.right = true;
             keys.left = false;
         }
         if (e.keyCode === keys.u) { //up
             keys.up = true;
             keys.jumping = true;
-            document.getElementById('player1').src = "sprite_red/practice_float_red.png";
+            player1.src = "sprite_red/practice_float_red.png";
         }
         if (e.keyCode === 13) {
-            if (document.getElementById('player1').direction === "right") {
+            if (player1.direction === "right") {
                 if (((Player2.pos + 50) < (Player1.pos + 25)) && ((Player2.pos + 50) > (Player1.pos - 5))) {
                     if ((Player2.ypos > (Player1.ypos - 20)) && (Player2.ypos < (Player1.ypos + 20))) {
                         Player2.health -= 1;
                         Updatehealth();
                         if (Player2.health === 0 && document.getElementById('bluewins').textContent !== "Blue Wins!") {
                             document.getElementById('redwins').textContent = "Red Wins!";
-                            Player2.alive = false;
+                            player2.alive = false;
                             die2();
                         }
                     }
                 }
             }
-            if (document.getElementById('player1').direction === "left") {
+            if (player1.direction === "left") {
                 if (((Player2.pos + 50) > (Player1.pos - 25)) && ((Player2.pos + 50) < (Player1.pos + 5))) {
                     if ((Player2.ypos > (Player1.ypos - 20)) && (Player2.ypos < (Player1.ypos + 20))) {
                         Player2.health -= 1;
                         Updatehealth();
                         if (Player2.health === 0 && document.getElementById('bluewins').textContent !== "Blue Wins!") {
                             document.getElementById('redwins').textContent = "Red Wins!";
-                            Player2.alive = false;
+                            player2.alive = false;
                             die2();
                         }
                     }
@@ -259,99 +248,99 @@ document.body.onkeydown = function frame(e) {
 
 
 function die() {
-    var player11 = document.getElementById('player1');
+
     setTimeout(function () {
-        player11.src = "death/dead1.png";
+        player1.src = "death/dead1.png";
     }, 50);
     setTimeout(function () {
-        player11.src = "death/dead2redright.png";
+        player1.src = "death/dead2redright.png";
     }, 100);
     setTimeout(function () {
-        player11.src = "death/dead3redright.png";
+        player1.src = "death/dead3redright.png";
     }, 150);
     setTimeout(function () {
-        player11.src = "death/dead4redright.png";
+        player1.src = "death/dead4redright.png";
     }, 200);
     setTimeout(function () {
-        player11.src = "death/dead5redright.png";
+        player1.src = "death/dead5redright.png";
     }, 250);
     setTimeout(function () {
-        player11.src = "death/dead6redright.png";
+        player1.src = "death/dead6redright.png";
     }, 350);
     setTimeout(function () {
-        player11.src = "death/dead7redright.png";
+        player1.src = "death/dead7redright.png";
     }, 400);
     setTimeout(function () {
-        player11.src = "death/dead8redright.png";
+        player1.src = "death/dead8redright.png";
     }, 450);
     setTimeout(function () {
-        player11.src = "death/dead9redright.png";
+        player1.src = "death/dead9redright.png";
     }, 500);
     setTimeout(function () {
-        player11.src = "death/dead10redright.png";
+        player1.src = "death/dead10redright.png";
     }, 550);
 
 
 }
 
 function die2() {
-    var player11 = document.getElementById('player2');
+
     setTimeout(function () {
-        player11.src = "death/dead1.png";
+        player2.src = "death/dead1.png";
     }, 50);
     setTimeout(function () {
-        player11.src = "death/dead2redright.png";
+        player2.src = "death/dead2redright.png";
     }, 100);
     setTimeout(function () {
-        player11.src = "death/dead3redright.png";
+        player2.src = "death/dead3redright.png";
     }, 150);
     setTimeout(function () {
-        player11.src = "death/dead4redright.png";
+        player2.src = "death/dead4redright.png";
     }, 200);
     setTimeout(function () {
-        player11.src = "death/dead5redright.png";
+        player2.src = "death/dead5redright.png";
     }, 250);
     setTimeout(function () {
-        player11.src = "death/dead6redright.png";
+        player2.src = "death/dead6redright.png";
     }, 350);
     setTimeout(function () {
-        player11.src = "death/dead7redright.png";
+        player2.src = "death/dead7redright.png";
     }, 400);
     setTimeout(function () {
-        player11.src = "death/dead8redright.png";
+        player2.src = "death/dead8redright.png";
     }, 450);
     setTimeout(function () {
-        player11.src = "death/dead9redright.png";
+        player2.src = "death/dead9redright.png";
     }, 500);
     setTimeout(function () {
-        player11.src = "death/dead10redright.png";
+        player2.src = "death/dead10redright.png";
     }, 550);
 
 
 }
 
 function stop(e) {
-    if (Player1.alive === true) {
+    if (player1.alive === true) {
         if (e.keyCode === keys.r || e.keyCode === keys.l) {
             keys.moving = false;
 
-            document.getElementById('player1').src = "sprite_red/practice_idle.png";
+            player1.src = "sprite_red/practice_idle.png";
         }
         if (e.keyCode === keys.u) {
             keys.jumping = false;
             keys.descend = true;
-            document.getElementById('player1').src = "sprite_red/practice_idle.png";
+            player1.src = "sprite_red/practice_idle.png";
         }
     }
-    if (Player2.alive === true) {
+    if (player2.alive === true) {
         if (e.keyCode === keys1.r || e.keyCode === keys1.l) {
             keys1.moving = false;
-            document.getElementById('player2').src = "sprite_red/practice_idle.png";
+            player2.src = "sprite_red/practice_idle.png";
         }
         if (e.keyCode === keys1.u) {
             keys1.jumping = false;
             keys1.descend = true;
-            document.getElementById('player2').src = "sprite_red/practice_idle.png";
+            player2.src = "sprite_red/practice_idle.png";
         }
     }
 
